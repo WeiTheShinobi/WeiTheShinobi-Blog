@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於我</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+<body>
+
+    <!--導航-->
+    <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+        <div class="ui container">
+            <div class="ui inverted secondary stackable menu">
+                <h2 class="ui teal header item">Blog</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首頁</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分類</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>標籤</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>歸檔</a>
+                <a href="#" class="active m-item item m-mobile-hide"><i class="info icon"></i>關於我</a>
+                <div class="right m-item item m-mobile-hide">
+                    <div class="ui icon transparent inverted input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+<!--            menu-->
+        </div>
+        <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+    <!--內容-->
+    <div class="m-container-small m-padded-tb-big ">
+
+        <div class="ui container">
+
+            <div class="ui stackable grid">
+                <div class="eleven wide column">
+                    <div class="ui segment">
+                        <img src="../static/images/wei_the_shinobi.jpg" alt="" class="ui rounded image" style="width: 600px">
+                    </div>
+                </div>
+
+                <div class="five wide column">
+                    <div class="ui top attached segment">
+                        <div class="ui header">關於我</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui header">
+                            <h4>Wei the Shinobi<br>葉高緯</h4>
+                        </div>
+                        <p>喜歡肥美的鴨鴨，還有畫畫和coding。悠閒的畫圖讓我很開心，創作也讓我好開心，喜歡挑戰與冒險。</p>
+                        <p>最喜歡每天瘋狂的學習。</p>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui orange basic left pointing label m-margin-tb-tiny">coding</div>
+                        <div class="ui orange basic left pointing label m-margin-tb-tiny">畫圖</div>
+                        <div class="ui orange basic left pointing label m-margin-tb-tiny">閱讀</div>
+                        <div class="ui orange basic left pointing label m-margin-tb-tiny">投資</div>
+                        <div class="ui orange basic left pointing label m-margin-tb-tiny">創作</div>
+
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">Web</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">Android</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">Java</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">Kotlin</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">MySQL</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">漫畫</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">畫圖</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">投資</div>
+
+                    </div>
+                    <div class="ui bottom attached segment">
+                        <a href="#" class="ui circular icon button" target="_blank"><i class="github icon"></i></a>
+                        <a href="#" class="ui circular icon button" target="_blank"><i class="instagram icon"></i></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <br>
+    <br>
+    <br>
+
+    <!--footer-->
+    <footer class="ui inverted vertical segment">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img src="../static/images/wei_the_shinobi.jpg" class="ui rounded image" alt="" style="width: 120px">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">猴子</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">猴子</a>
+                        <a href="#" class="item">猴子</a>
+                        <a href="#" class="item">猴子</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">猴子</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">猴子</a>
+                        <a href="#" class="item">猴子</a>
+                        <a href="#" class="item">猴子</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header">猴子</h4>
+                    <p class="item">巨大猴子</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="m-opacity-tiny">Copyright© 2021 &nbsp Wei the Shinobi </p>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+
+    </script>
+</body>
+</html>
