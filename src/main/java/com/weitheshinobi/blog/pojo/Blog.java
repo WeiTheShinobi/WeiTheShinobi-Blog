@@ -1,11 +1,13 @@
 package com.weitheshinobi.blog.pojo;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "t_blog")
-public class blog {
+public class Blog {
 
     @Id
     @GeneratedValue
@@ -26,7 +28,17 @@ public class blog {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
 
-    public blog() {
+    @ManyToOne
+    private Type type;
+    @ManyToMany(cascade = {CascadeType.PERSIST})
+    private List<Tag> tags = new ArrayList<>();
+    @ManyToOne
+    private User user;
+    @OneToMany(mappedBy = "blog")
+    private List<Comment> comments = new ArrayList<>();
+
+
+    public Blog() {
     }
 
     public Long getId() {
@@ -131,6 +143,38 @@ public class blog {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override
