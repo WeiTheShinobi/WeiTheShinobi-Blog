@@ -20,7 +20,7 @@ public class Blog {
     private Integer views;
     private boolean appreciation;
     private boolean shareStatement;
-    private boolean commentabled;
+    private boolean commentable;
     private boolean published;
     private boolean recommend;
     @Temporal(TemporalType.TIMESTAMP)
@@ -105,12 +105,12 @@ public class Blog {
         this.shareStatement = shareStatement;
     }
 
-    public boolean isCommentabled() {
-        return commentabled;
+    public boolean isCommentable() {
+        return commentable;
     }
 
-    public void setCommentabled(boolean commentabled) {
-        this.commentabled = commentabled;
+    public void setCommentable(boolean commentabled) {
+        this.commentable = commentabled;
     }
 
     public boolean isPublished() {
@@ -188,7 +188,7 @@ public class Blog {
                 ", views=" + views +
                 ", appreciation=" + appreciation +
                 ", shareStatement=" + shareStatement +
-                ", commentabled=" + commentabled +
+                ", commentable=" + commentable +
                 ", published=" + published +
                 ", recommend=" + recommend +
                 ", createTime=" + createTime +
