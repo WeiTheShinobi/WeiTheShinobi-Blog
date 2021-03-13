@@ -2,6 +2,7 @@ package com.weitheshinobi.blog.service;
 
 import com.weitheshinobi.blog.dao.UserDao;
 import com.weitheshinobi.blog.pojo.User;
+import com.weitheshinobi.blog.utlis.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,6 @@ public class UserServiceImpl implements UserService{
 //    登入確認
     @Override
     public User checkUser(String username, String password) {
-        return userDao.findByUsernameAndPassword(username, password);
+        return userDao.findByUsernameAndPassword(username, MD5Utils.code(password));
     }
 }

@@ -22,13 +22,13 @@ class UserServiceImplTest {
 
     @Test
     void checkUser() {
-//        設定mock
-        Mockito.when(userDao.findByUsernameAndPassword("abc","123")).thenReturn(new User());
-
-        User user = userService.checkUser("abc", "123");
         User nullUser = userService.checkUser("", "");
-        assertNotNull(user);
         assertNull(nullUser);
+
+        //        設定mock
+        Mockito.when(userDao.findByUsernameAndPassword(Mockito.anyString(),Mockito.anyString())).thenReturn(new User());
+        User user = userService.checkUser("abc", "123");
+        assertNotNull(user);
 
     }
 }
