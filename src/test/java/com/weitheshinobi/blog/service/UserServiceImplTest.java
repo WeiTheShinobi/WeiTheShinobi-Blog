@@ -4,6 +4,7 @@ import com.weitheshinobi.blog.dao.UserDao;
 import com.weitheshinobi.blog.pojo.User;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class UserServiceImplTest {
 
-    @Autowired
+    @InjectMocks
     private UserService userService;
 
     @MockBean
