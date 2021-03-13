@@ -26,7 +26,9 @@ class UserServiceImplTest {
         Mockito.when(userDao.findByUsernameAndPassword("abc","123")).thenReturn(new User());
 
         User user = userService.checkUser("abc", "123");
+        User nullUser = userService.checkUser("", "");
         assertNotNull(user);
+        assertNull(nullUser);
 
     }
 }
