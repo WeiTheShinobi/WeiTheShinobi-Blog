@@ -13,19 +13,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping
 public class LoginController {
 
 //    調用service
     @Autowired
     private UserService userService;
 
-    @RequestMapping
+    @RequestMapping("/admin")
     public String loginPage() {
         return "admin/login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/admin/login")
     public String login(@RequestParam String username,
                         @RequestParam String password,
                         HttpSession session,
@@ -42,7 +42,7 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/logout")
+    @RequestMapping("/admin/logout")
     public String logout(HttpSession session){
         session.removeAttribute(UserConstant.USER);
         return "redirect:/admin";

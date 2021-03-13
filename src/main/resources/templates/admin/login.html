@@ -3,7 +3,7 @@
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>管理</title>
+    <title>登入</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../../static/css/me.css">
 </head>
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="ui error message"></div>
-
+                    <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}">用戶名或密碼錯誤</div>
                 </form>
 
             </div>
@@ -48,6 +48,28 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <!--/*/</th:block>/*/-->
+
+<script>
+    $('.ui.form').form({
+        fields:{
+            username:{
+                identifier: 'username',
+                rules: [{
+                    type:'empty',
+                    prompt:'請輸入使用者'
+                }]
+            },
+            password:{
+                identifier: 'password',
+                rules: [{
+                    type:'empty',
+                    prompt:'請輸入密碼'
+                }]
+            }
+        }
+
+    })
+</script>
 
 </body>
 </html>
