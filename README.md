@@ -5,7 +5,7 @@
 - 後端：Java Spring Boot
 - 前端模板：Semantic UI
 - 模板引擎：Thymeleaf
-- 測試：Junit5
+- 測試：JUnit5
 - 資料庫：MySQL
 - 插件：
   - [typo.css](https://github.com/sofish/typo.css) 中文網頁重設與排版
