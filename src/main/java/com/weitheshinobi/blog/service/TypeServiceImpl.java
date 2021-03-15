@@ -29,6 +29,12 @@ public class TypeServiceImpl implements TypeService {
 
     @Transactional
     @Override
+    public Type getTypeByName(String name) {
+        return typeDao.findTypeByName(name);
+    }
+
+    @Transactional
+    @Override
     public Page<Type> listType(Pageable pageable) {
         return typeDao.findAll(pageable);
     }

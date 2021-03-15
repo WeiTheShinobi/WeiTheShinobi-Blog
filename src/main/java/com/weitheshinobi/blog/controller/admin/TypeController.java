@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class TypeController {
@@ -33,13 +34,21 @@ public class TypeController {
         return "admin/types-input";
     }
 
+//    新增Type
     @PostMapping("/admin/types/commit")
-    public String post(Type type){
+    public String post(Type type, RedirectAttributes attributes){
+        Type typeByName = typeService.getTypeByName(type.getName());
+        if(typeByName != null){
+            attributes.addFlashAttribute(TypeConstant.MESSAGE,TypeConstant.RESULT_MESSAGE_DUPLICATE);
+            return "redirect:/admin/types";
+        }
+
         Type type1 = typeService.saveType(type);
+//        成功失敗的回饋訊息
         if(type1 != null){
-
+            attributes.addFlashAttribute(TypeConstant.MESSAGE,TypeConstant.RESULT_MESSAGE_SUCCESS);
         }else {
-
+            attributes.addFlashAttribute(TypeConstant.MESSAGE,TypeConstant.RESULT_MESSAGE_FAIL);
         }
         return "redirect:/admin/types";
     }
