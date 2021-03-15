@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
+import static com.weitheshinobi.blog.constant.UserConstant.*;
+
 @Controller
 @RequestMapping
 public class LoginController {
@@ -34,17 +36,17 @@ public class LoginController {
         User user = userService.checkUser(username, password);
         if(user != null){
             user.setPassword(null);
-            session.setAttribute(UserConstant.USER,user);
+            session.setAttribute(USER,user);
             return "admin/index";
         } else {
-            attributes.addFlashAttribute(UserConstant.MESSAGE, UserConstant.LOGIN_ERROR);
+            attributes.addFlashAttribute(MESSAGE, LOGIN_ERROR);
             return "redirect:/admin";
         }
     }
 
     @RequestMapping("/admin/logout")
     public String logout(HttpSession session){
-        session.removeAttribute(UserConstant.USER);
+        session.removeAttribute(USER);
         return "redirect:/admin";
     }
 

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import static com.weitheshinobi.blog.constant.TypeConstant.*;
+
 @Controller
 public class TypeController {
 
@@ -26,7 +28,7 @@ public class TypeController {
     public String list(@PageableDefault(sort = {"id"},direction = Sort.Direction.DESC) Pageable pageable,
                        Model model){
         Page<Type> types = typeService.listType(pageable);
-        model.addAttribute(TypeConstant.PAGE,types);
+        model.addAttribute(PAGE,types);
         return "admin/types";
     }
 
@@ -37,7 +39,7 @@ public class TypeController {
 
     @RequestMapping("/admin/types/{id}/input")
     public String editInput(@PathVariable Long id , Model model){
-        model.addAttribute(TypeConstant.TYPE,typeService.getTypeById(id));
+        model.addAttribute(TYPE,typeService.getTypeById(id));
         return "admin/types-input";
     }
 
@@ -46,16 +48,16 @@ public class TypeController {
     public String post(Type type, RedirectAttributes attributes){
         Type typeByName = typeService.getTypeByName(type.getName());
         if(typeByName != null){
-            attributes.addFlashAttribute(TypeConstant.MESSAGE,TypeConstant.RESULT_MESSAGE_DUPLICATE);
+            attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_DUPLICATE);
             return "redirect:/admin/types";
         }
 
         Type type1 = typeService.saveType(type);
 //        成功失敗的回饋訊息
         if(type1 != null){
-            attributes.addFlashAttribute(TypeConstant.MESSAGE,TypeConstant.RESULT_MESSAGE_SUCCESS);
+            attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_SUCCESS);
         }else {
-            attributes.addFlashAttribute(TypeConstant.MESSAGE,TypeConstant.RESULT_MESSAGE_FAIL);
+            attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_FAIL);
         }
         return "redirect:/admin/types";
     }
@@ -65,16 +67,16 @@ public class TypeController {
     public String editPost(Type type,@PathVariable Long id, RedirectAttributes attributes){
         Type typeByName = typeService.getTypeByName(type.getName());
         if(typeByName != null){
-            attributes.addFlashAttribute(TypeConstant.MESSAGE,TypeConstant.RESULT_MESSAGE_DUPLICATE);
+            attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_DUPLICATE);
             return "redirect:/admin/types";
         }
 
         Type type1 = typeService.updateType(id,type);
 //        成功失敗的回饋訊息
         if(type1 != null){
-            attributes.addFlashAttribute(TypeConstant.MESSAGE,TypeConstant.RESULT_MESSAGE_SUCCESS);
+            attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_SUCCESS);
         }else {
-            attributes.addFlashAttribute(TypeConstant.MESSAGE,TypeConstant.RESULT_MESSAGE_FAIL);
+            attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_FAIL);
         }
         return "redirect:/admin/types";
     }
@@ -82,7 +84,7 @@ public class TypeController {
     @RequestMapping("/admin/types/{id}/delete")
     public String delete(@PathVariable Long id,RedirectAttributes attributes){
         typeService.deleteType(id);
-        attributes.addFlashAttribute(TypeConstant.MESSAGE,TypeConstant.RESULT_MESSAGE_SUCCESS);
+        attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_SUCCESS);
         return "redirect:/admin/types";
     }
 
