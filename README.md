@@ -10,6 +10,7 @@
 - 插件：
   - [typo.css](https://github.com/sofish/typo.css) 中文網頁重設與排版
   - [prism](https://github.com/PrismJS/prism) 程式碼顯示優化
+  - [Editor.md](https://pandao.github.io/editor.md/index.html) 開源在線 Markdown 編輯器
 
 # 功能
 
