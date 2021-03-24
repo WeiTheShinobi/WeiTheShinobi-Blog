@@ -75,12 +75,12 @@
                     <div class="required field">
                         <div class="ui left labeled action input">
                             <label class="ui compact teal basic label">分類</label>
-                            <div class="ui fluid multiple search selection dropdown">
+                            <div class="ui fluid selection dropdown">
                                 <input type="hidden" name="type.id">
                                 <i class="dropdown icon"></i>
                                 <div class="default text">分類</div>
                                 <div class="menu">
-                                    <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">錯誤日誌</div>
+                                    <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">錯誤日誌</div>
                                 </div>
                             </div>
                         </div>
@@ -93,9 +93,7 @@
                                 <i class="dropdown icon"></i>
                                 <div class="default text">標籤</div>
                                 <div class="menu">
-                                    <div class="item" data-value="1">Java</div>
-                                    <div class="item" data-value="2">Kotlin</div>
-                                    <div class="item" data-value="3">Android</div>
+                                    <div th:each="tag : ${tags}" class="item" data-value="1" th:data-value="${tag.id}" th:text="${tag.name}">錯誤日誌</div>
                                 </div>
                             </div>
                         </div>

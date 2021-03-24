@@ -37,6 +37,8 @@ public class Blog {
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
 
+    @Transient
+    private String tagIds;
 
     public Blog() {
     }
@@ -109,8 +111,8 @@ public class Blog {
         return commentable;
     }
 
-    public void setCommentable(boolean commentabled) {
-        this.commentable = commentabled;
+    public void setCommentable(boolean commentable) {
+        this.commentable = commentable;
     }
 
     public boolean isPublished() {
@@ -175,6 +177,14 @@ public class Blog {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
     }
 
     @Override

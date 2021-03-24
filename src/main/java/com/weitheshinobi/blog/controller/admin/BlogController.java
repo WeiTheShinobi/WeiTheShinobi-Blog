@@ -1,6 +1,9 @@
 package com.weitheshinobi.blog.controller.admin;
 
+import com.weitheshinobi.blog.constant.UserConstant;
 import com.weitheshinobi.blog.pojo.Blog;
+import com.weitheshinobi.blog.pojo.Tag;
+import com.weitheshinobi.blog.pojo.User;
 import com.weitheshinobi.blog.service.BlogService;
 import com.weitheshinobi.blog.service.TagService;
 import com.weitheshinobi.blog.service.TypeService;
@@ -11,7 +14,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
+
+import static com.weitheshinobi.blog.constant.BlogConstant.*;
 
 @Controller
 public class BlogController {
@@ -27,7 +37,7 @@ public class BlogController {
     @Autowired
     private TagService tagService;
 
-    @RequestMapping("/admin/blogs")
+    @GetMapping("/admin/blogs")
     public String blogs(@PageableDefault(sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                         BlogQuery blog, Model model) {
         model.addAttribute("types", typeService.listType());
@@ -49,5 +59,20 @@ public class BlogController {
         model.addAttribute("tags",tagService.listTag());
         model.addAttribute("blog", new Blog());
         return INPUT;
+    }
+
+    @PostMapping("/admin/blogs")
+    public String post(Blog blog, RedirectAttributes attributes, HttpSession session){
+        blog.setUser((User) session.getAttribute(UserConstant.USER));
+        blog.setType(typeService.getTypeById(blog.getType().getId()));
+        blog.setTags(tagService.listTag(blog.getTagIds()));
+        Blog b = blogService.saveBlog(blog);
+//        成功失敗的回饋訊息
+        if(b != null){
+            attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_SUCCESS);
+        }else {
+            attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_FAIL);
+        }
+        return REDIRECT_LIST;
     }
 }
