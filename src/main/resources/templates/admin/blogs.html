@@ -38,8 +38,8 @@
     <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="right menu">
-                <a href="#" class="item">發布</a>
-                <a href="#" class="active teal item">列表</a>
+                <a href="#" th:href="@{/admin/blogs/input}" class="item">發布</a>
+                <a href="#" th:href="@{/admin/blogs}" class="active teal item">列表</a>
             </div>
 
         </div>
@@ -90,6 +90,7 @@
                         <th>標題</th>
                         <th>類型</th>
                         <th>推薦</th>
+                        <th>狀態</th>
                         <th>更新時間</th>
                         <th>操作</th>
                     </tr>
@@ -100,7 +101,7 @@
                         <td th:text="${blog.title}">肥美鴨鴨</td>
                         <td th:text="${blog.type.name}">可愛</td>
                         <td th:text="${blog.recommend} ? '是' : '否'">是</td>
-                        <td th:text="${blog.published} ? '草稿' : '發布'">草稿</td>
+                        <td th:text="${blog.published} ? '發布' : '草稿'">草稿</td>
                         <td th:text="${blog.updateTime}">2021-02-02 16:45</td>
                         <td>
                             <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini teal basic button">編輯</a>

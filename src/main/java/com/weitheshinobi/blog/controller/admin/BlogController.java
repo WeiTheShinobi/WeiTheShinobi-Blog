@@ -15,6 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,6 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 
 import static com.weitheshinobi.blog.constant.BlogConstant.*;
+import static com.weitheshinobi.blog.constant.TagConstant.MESSAGE;
+import static com.weitheshinobi.blog.constant.TagConstant.RESULT_MESSAGE_SUCCESS;
 
 @Controller
 public class BlogController {
@@ -61,6 +64,16 @@ public class BlogController {
         return INPUT;
     }
 
+    @RequestMapping("/admin/blogs/{id}/input")
+    public String editInput(@PathVariable Long id , Model model) {
+        model.addAttribute("types",typeService.listType());
+        model.addAttribute("tags",tagService.listTag());
+        Blog blog = blogService.getBlogByID(id);
+        blog.init();
+        model.addAttribute("blog", blog);
+        return INPUT;
+    }
+
     @PostMapping("/admin/blogs")
     public String post(Blog blog, RedirectAttributes attributes, HttpSession session){
         blog.setUser((User) session.getAttribute(UserConstant.USER));
@@ -73,6 +86,13 @@ public class BlogController {
         }else {
             attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_FAIL);
         }
+        return REDIRECT_LIST;
+    }
+
+    @RequestMapping("/admin/blogs/{id}/delete")
+    public String delete(RedirectAttributes attributes,@PathVariable Long id){
+        blogService.deleteBlog(id);
+        attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_SUCCESS);
         return REDIRECT_LIST;
     }
 }
