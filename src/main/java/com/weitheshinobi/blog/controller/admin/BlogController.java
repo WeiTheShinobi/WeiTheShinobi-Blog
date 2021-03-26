@@ -75,16 +75,21 @@ public class BlogController {
     }
 
     @PostMapping("/admin/blogs")
-    public String post(Blog blog, RedirectAttributes attributes, HttpSession session){
-        blog.setUser((User) session.getAttribute(UserConstant.USER));
+    public String post(Blog blog, RedirectAttributes attributes, HttpSession session) {
+        blog.setUser((User) session.getAttribute("user"));
         blog.setType(typeService.getTypeById(blog.getType().getId()));
         blog.setTags(tagService.listTag(blog.getTagIds()));
-        Blog b = blogService.saveBlog(blog);
-//        成功失敗的回饋訊息
-        if(b != null){
-            attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_SUCCESS);
-        }else {
-            attributes.addFlashAttribute(MESSAGE,RESULT_MESSAGE_FAIL);
+        Blog b;
+        if (blog.getId() == null) {
+            b =  blogService.saveBlog(blog);
+        } else {
+            b = blogService.updateBlog(blog.getId(),blog);
+        }
+
+        if (b == null ) {
+            attributes.addFlashAttribute("message", "操作失败");
+        } else {
+            attributes.addFlashAttribute("message", "操作成功");
         }
         return REDIRECT_LIST;
     }

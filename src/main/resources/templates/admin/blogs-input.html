@@ -51,16 +51,15 @@
     <div class="m-container m-padded-tb-big ">
         <div class="ui container">
             <form id="blog-form" action="#" th:object="${blog}" th:action="@{/admin/blogs}" method="post" class="ui form">
-                <input type="hidden" name="published">
+                <input type="hidden" name="published" th:value="*{published}">
                 <input type="hidden" name="id" th:value="*{id}">
                 <div class="required field">
                     <div class="ui left labeled input">
                         <div class="ui selection teal basic dropdown compact label">
                             <input type="hidden" value="原創" name="flag" th:value="*{flag}">
                             <i class="dropdown icon"></i>
-                            <div class="default text">原創</div>
+                            <div class="text">原創</div>
                             <div class="menu">
-                                <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">錯誤日誌</div>
                                 <div class="item" data-value="原創">原創</div>
                                 <div class="item" data-value="轉載">轉載</div>
                                 <div class="item" data-value="翻譯">翻譯</div>
@@ -69,8 +68,9 @@
                         <input type="text" name="title" placeholder="標題" th:value="*{title}">
                     </div>
                 </div>
+
                 <div class="required field">
-                    <div id="md-content" style="z-index:  1 !important;">
+                    <div id="md-content" style="z-index: 1 !important;">
                         <textarea name="content" placeholder="文章內容" style="display: none" th:text="*{content}"></textarea>
                     </div>
                 </div>
@@ -109,6 +109,10 @@
                         <label class="ui teal basic label">圖片</label>
                         <input type="text" name="firstPicture" th:value="*{firstPicture}" placeholder="圖片引用地址">
                     </div>
+                </div>
+
+                <div class="required field">
+                    <textarea name="description" th:text="*{description}" placeholder="博客描述..." maxlength="200"></textarea>
                 </div>
 
                 <div class="inline fields">
@@ -258,6 +262,13 @@
                     rules: [{
                         type:'empty',
                         prompt:'標題： 請輸入文章圖片'
+                    }]
+                },
+                description : {
+                    identifier: 'description',
+                    rules: [{
+                        type : 'empty',
+                        prompt: '标题：请输入博客描述'
                     }]
                 }
             }

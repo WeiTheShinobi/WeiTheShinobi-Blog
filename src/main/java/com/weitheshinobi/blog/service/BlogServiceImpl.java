@@ -3,6 +3,7 @@ package com.weitheshinobi.blog.service;
 import com.weitheshinobi.blog.dao.BlogDao;
 import com.weitheshinobi.blog.pojo.Blog;
 import com.weitheshinobi.blog.pojo.Type;
+import com.weitheshinobi.blog.utlis.MyBeanUtils;
 import com.weitheshinobi.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,9 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog updateBlog(Long id, Blog blog) {
         Blog b = blogDao.findBlogById(id);
-        BeanUtils.copyProperties(b,blog);
+
+        BeanUtils.copyProperties(blog,b, MyBeanUtils.getNullPropertyNames(blog));
+        b.setUpdateTime(new Date());
         return blogDao.save(b);
     }
 
