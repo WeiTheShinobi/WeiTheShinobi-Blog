@@ -17,6 +17,10 @@ footer p{
     opacity: 0.8 !important;
 }
 
+.m-black{
+    color: #1f1f1f;
+}
+
 #types>div{
     margin: 10px;
 }
@@ -148,7 +152,7 @@ footer p{
 }
 
 .m-text{
-    font-weight: 300 !important;
+    font-weight: 700 !important;
     letter-spacing: 1px !important;
     line-height: 1.8;
 }

@@ -46,36 +46,36 @@
                                 <h3 class="ui teal header">文章</h3>
                             </div>
                             <div class="right aligned column">
-                                共 <h2 class="ui orange header m-inline-block m-text-thin">14</h2> 篇
+                                共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${page.totalElements}">14</h2> 篇
                             </div>
                         </div>
                     </div>
 
 <!--                內容-->
                     <div class="ui attached segment" >
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                           <div class="ui mobile reversed stackable grid">
+                        <div class="ui padded vertical segment m-padded-tb-large" th:each="blog : ${page.content}">
+                           <div class="ui middle aligned mobile reversed stackable grid">
 
                                <div class="ui eleven wide column">
-                                   <h3 class="ui header">我愛鴨鴨</h3>
-                                   <p class="m-text">我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨。</p>
+                                   <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">我愛鴨鴨</a></h3>
+                                   <p class="m-text" th:text="${blog.description}">我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨，我愛美麗鴨。</p>
                                    <div class="ui grid">
                                        <div class="eleven wide column">
                                            <div class="ui mini horizontal link list">
                                                <div class="item">
-                                                   <img src="https://unsplash.it/100/100?image=100" alt="" class="ui avatar image">
-                                                   <div class="content"><a href="#" class="header">美麗鴨</a></div>
+                                                   <img src="https://unsplash.it/100/100?image=100" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image">
+                                                   <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">美麗鴨</a></div>
                                                </div>
                                                <div class="item">
-                                                   <i class="calendar icon"></i>2021-01-21
+                                                   <i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2021-01-21</span>
                                                </div>
                                                <div class="item">
-                                                   <i class="eye icon"></i> 999
+                                                   <i class="eye icon"></i> <span th:text="${blog.views}">999</span>
                                                </div>
                                            </div>
                                        </div>
                                        <div class="right aligned five wide column">
-                                           <a href="#" class="ui teal basic label m-padded-mini m-text-thin">
+                                           <a href="#" class="ui teal basic label m-padded-mini m-text-thin" th:text="${blog.type.name}">
                                                肥美的鴨子
                                            </a>
                                        </div>
@@ -83,13 +83,14 @@
                                </div>
 
                                <div class="ui five wide column">
-                                   <a href="" target="_blank">
-                                       <img src="https://unsplash.it/800/450?image=100" alt="" class="ui rounded image">
+                                   <a href="" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                       <img src="https://unsplash.it/800/450?image=100" th:src="@{${blog.firstPicture}}" alt="" class="ui rounded image">
                                    </a>
                                </div>
 
                            </div>
                        </div>
+                        <!--/*-->
                         <div class="ui padded vertical segment m-padded-tb-large">
                             <div class="ui mobile reversed stackable grid">
 
@@ -275,17 +276,18 @@
 
                             </div>
                         </div>
+                        <!--*/-->
                     </div>
 
 
 <!--                底部-->
-                    <div class="ui bottom attached segment">
+                    <div class="ui bottom attached segment" th:if="${page.totalPages} > 1"  >
                         <div class="ui middle aligned two column grid">
                             <div class="column">
-                                <a href="#" class="ui teal basic button">上一頁</a>
+                                <a href="#" class="ui teal basic button" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}">上一頁</a>
                             </div>
                             <div class="right aligned column">
-                                <a href="#" class="ui teal basic button">下一頁</a>
+                                <a href="#" class="ui teal basic button" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}">下一頁</a>
                             </div>
                         </div>
                     </div>
@@ -305,11 +307,12 @@
                             </div>
                         </div>
                         <div class="ui teal segment">
-                            <div class="ui fluid vertical menu">
-                                <a href="#" class="item">
-                                    學習
-                                    <div class="ui teal basic left pointing label">13</div>
+                            <div class="ui fluid vertical menu" >
+                                <a href="#" class="item" th:each="type : ${type}">
+                                    <span th:text="${type.name}">學習</span>
+                                    <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
                                 </a>
+                                <!--/*-->
                                 <a href="#" class="item">
                                     漫畫
                                     <div class="ui teal basic left pointing label">9</div>
@@ -318,6 +321,7 @@
                                     鴨鴨
                                     <div class="ui teal basic left pointing label">10</div>
                                 </a>
+                                <!--*/-->
                             </div>
                         </div>
                     </div>
@@ -336,15 +340,17 @@
                         </div>
 
                         <div class="ui teal segment">
-                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
-                                Java <div class="detail">3</div>
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny" th:each="tag : ${tag}">
+                                <span th:text="${tag.name}">Java</span> <div class="detail" th:text="${#arrays.length(tag.blogs)}">3</div>
                             </a>
+                            <!--/*-->
                             <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
                                 Android <div class="detail">10</div>
                             </a>
                             <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
                                 鴨鴨 <div class="detail">2</div>
                             </a>
+                            <!--*/-->
                         </div>
 
                     </div>
@@ -354,14 +360,8 @@
                         <div class="ui secondary segment">
                             <i class="bookmark icon"></i>推薦
                         </div>
-                        <div class="ui segment">
-                            <a href="#" target="_blank">肥美ㄉ鴨鴨</a>
-                        </div>
-                        <div class="ui segment">
-                            <a href="#" target="_blank">關於我</a>
-                        </div>
-                        <div class="ui segment">
-                            <a href="#" target="_blank">Android的呱呱</a>
+                        <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" th:text="${blog.title}">肥美ㄉ鴨鴨</a>
                         </div>
                     </div>
 

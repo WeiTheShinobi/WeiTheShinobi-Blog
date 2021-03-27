@@ -1,5 +1,6 @@
 package com.weitheshinobi.blog.controller.admin;
 
+import com.weitheshinobi.blog.constant.BlogConstant;
 import com.weitheshinobi.blog.constant.UserConstant;
 import com.weitheshinobi.blog.pojo.Blog;
 import com.weitheshinobi.blog.pojo.Tag;
@@ -87,9 +88,9 @@ public class BlogController {
         }
 
         if (b == null ) {
-            attributes.addFlashAttribute("message", "操作失败");
+            attributes.addFlashAttribute(MESSAGE, RESULT_MESSAGE_FAIL);
         } else {
-            attributes.addFlashAttribute("message", "操作成功");
+            attributes.addFlashAttribute(MESSAGE, RESULT_MESSAGE_SUCCESS);
         }
         return REDIRECT_LIST;
     }

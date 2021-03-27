@@ -19,5 +19,6 @@ public interface TypeService {
 
     List<Type> listType();
 
+
     void deleteType(Long id);
 }

@@ -5,7 +5,9 @@ import com.weitheshinobi.blog.pojo.Type;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,6 +58,7 @@ public class TypeServiceImpl implements TypeService {
     public List<Type> listType() {
         return typeDao.findAll();
     }
+
 
     @Transactional
     @Override
