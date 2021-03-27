@@ -3,6 +3,7 @@ package com.weitheshinobi.blog.constant;
 public class BlogConstant {
     public static final String PAGE = "page";
     public static final String MESSAGE = "message";
+    public static final String QUERY = "query";
     public static final String TAG = "tag";
     public static final String TYPE = "type";
     public static final String RECOMMEND_BLOG = "recommendBlogs";
