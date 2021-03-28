@@ -1,9 +1,6 @@
 package com.weitheshinobi.blog.controller.admin;
 
-import com.weitheshinobi.blog.constant.BlogConstant;
-import com.weitheshinobi.blog.constant.UserConstant;
 import com.weitheshinobi.blog.pojo.Blog;
-import com.weitheshinobi.blog.pojo.Tag;
 import com.weitheshinobi.blog.pojo.User;
 import com.weitheshinobi.blog.service.BlogService;
 import com.weitheshinobi.blog.service.TagService;
@@ -69,7 +66,7 @@ public class BlogController {
     public String editInput(@PathVariable Long id , Model model) {
         model.addAttribute("types",typeService.listType());
         model.addAttribute("tags",tagService.listTag());
-        Blog blog = blogService.getBlogByID(id);
+        Blog blog = blogService.getBlogById(id);
         blog.init();
         model.addAttribute("blog", blog);
         return INPUT;

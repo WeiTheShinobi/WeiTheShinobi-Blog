@@ -3,6 +3,7 @@ package com.weitheshinobi.blog.service;
 import com.weitheshinobi.blog.dao.BlogDao;
 import com.weitheshinobi.blog.pojo.Blog;
 import com.weitheshinobi.blog.pojo.Type;
+import com.weitheshinobi.blog.utlis.MarkdownUtils;
 import com.weitheshinobi.blog.utlis.MyBeanUtils;
 import com.weitheshinobi.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
@@ -30,8 +31,19 @@ public class BlogServiceImpl implements BlogService {
     private BlogDao blogDao;
 
     @Override
-    public Blog getBlogByID(Long id) {
+    public Blog getBlogById(Long id) {
         return blogDao.findBlogById(id);
+    }
+
+    @Override
+    public Blog getBlogByIdAndConvert(Long id) {
+        Blog blog = blogDao.findBlogById(id);
+
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog,b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        return b;
     }
 
     @Override

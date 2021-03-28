@@ -12,7 +12,7 @@
 <body>
 
     <!--導航-->
-    <nav class="ui inverted attached segment m-padded-tb-mini">
+    <nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">Blog</h2>
@@ -44,36 +44,34 @@
             <div class="ui top attached segment">
                 <div class="ui horizontal link list">
                     <div class="item">
-                        <img src="https://unsplash.it/100/100?image=100" alt="" class="ui avatar image">
-                        <div class="content"><a href="#" class="header">美麗鴨</a></div>
+                        <img src="https://unsplash.it/100/100?image=100" th:src="@{${blog.user.avatar}}" alt="" class="ui avatar image" >
+                        <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">美麗鴨</a></div>
                     </div>
                     <div class="item">
-                        <i class="calendar icon"></i>2021-01-21
+                        <i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2021-01-21</span>
                     </div>
                     <div class="item">
-                        <i class="eye icon"></i> 999
+                        <i class="eye icon"></i><span th:text="${blog.views}">999</span>
                     </div>
                 </div>
             </div>
 <!--            圖片-->
             <div id="title-picture" class="ui attached segment">
-                <img src="https://unsplash.it/800/450?image=100" alt="" class="ui fluid rounded image">
+                <img src="https://unsplash.it/800/450?image=100" th:src="@{${blog.firstPicture}}" alt="" class="ui fluid rounded image">
             </div>
 <!--            內容-->
             <div class="ui js-toc-content attached padded segment">
 
 
                 <div class="ui right aligned basic segment">
-                    <div class="ui orange basic label">
-                        原創
-                    </div>
+                    <div class="ui orange basic label" th:text="${blog.flag}">原創</div>
                 </div>
 
-                <h2 class="ui center aligned header">胖胖鴨鴨</h2>
+                <h2 class="ui center aligned header" th:text="${blog.title}">胖胖鴨鴨</h2>
 
                 <br>
 
-                <div id="content" class="typo typo-selection js-toc-content m-padded-lr-responsive m-padded-tb-large">
+                <div id="content" class="typo typo-selection js-toc-content m-padded-lr-responsive m-padded-tb-large" th:utext="${blog.content}">
 
                     <pre><code class="language-css">p { color: red }</code></pre>
                     <pre><code class="language-java">
@@ -477,26 +475,22 @@ h5,h6{font-size:1em;}
 
 <!--                標籤-->
                 <div class="m-padded-lr-responsive">
-                    <div class="ui basic teal left pointing label">
-                        Java
-                    </div>
+                    <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">Java</div>
                 </div>
 
 <!--                讚賞-->
                 <div class="ui center aligned basic segment">
-                    <button id="payButton" class="ui orange basic circular button">
-                        讚賞
-                    </button>
+                    <button id="payButton" class="ui orange basic circular button">讚賞</button>
                 </div>
 <!--                圖示-->
                 <div class="ui payQR flowing popup top left transition hidden">
                     <div class="ui orange basic label">
                         <div class="ui images">
                             <div class="image">
-                                <img src="../static/images/wei_the_shinobi.jpg" alt="" class="ui rounded bordered image" style="width: 120px">
+                                <img src="../static/images/wei_the_shinobi.jpg" th:src="@{/images/wei_the_shinobi.jpg}" alt="" class="ui rounded bordered image" style="width: 120px">
                             </div>
                             <div class="image">
-                                <img src="../static/images/wei_the_shinobi.jpg" alt="" class="ui rounded bordered image" style="width: 120px">
+                                <img src="../static/images/wei_the_shinobi.jpg" th:src="@{/images/wei_the_shinobi.jpg}" alt="" class="ui rounded bordered image" style="width: 120px">
                             </div>
                         </div>
                     </div>
@@ -510,14 +504,14 @@ h5,h6{font-size:1em;}
                 <div class="ui middle aligned grid">
                     <div class="eleven wide column">
                         <ui class="list">
-                            <li>葉高緯&nbspWei&nbspthe&nbspShinobi</li>
-                            <li>鴨子</li>
-                            <li>鴨子</li>
+                            <li>作者：<span th:text="${blog.user.nickname}">葉高緯&nbspWei&nbspthe&nbspShinobi</span></li>
+                            <li><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd HH:mm')}"></span></li>
+                            <li><a href="#" th:href="@{/about}" target="_blank">關於我</a></li>
                         </ui>
                     </div>
 
                     <div class="five wide column">
-                        <img src="../static/images/wei_the_shinobi.jpg" alt="" class="ui right floated rounded bordered image" style="width: 110px">
+                        <img src="../static/images/wei_the_shinobi.jpg" th:src="@{/images/wei_the_shinobi.jpg}" alt="" class="ui right floated rounded bordered image" style="width: 110px">
                     </div>
                 </div>
             </div>

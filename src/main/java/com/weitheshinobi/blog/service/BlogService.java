@@ -9,7 +9,9 @@ import java.util.List;
 
 public interface BlogService {
 
-    Blog getBlogByID(Long id);
+    Blog getBlogById(Long id);
+
+    Blog getBlogByIdAndConvert(Long id);
 
     Page<Blog> listBlog(Pageable pageable, BlogQuery blog);
 

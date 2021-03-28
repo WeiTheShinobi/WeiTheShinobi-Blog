@@ -1,10 +1,15 @@
 @charset "utf-8";
 
 .typo p{
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 19px;
+  font-weight: 500;
   line-height: 1.8;
   text-align: justify;
+}
+
+.typo li{
+  font-weight: 400;
+  padding: 4px 0;
 }
 
 .typo button,.typo input,.typo select,.typo textarea {

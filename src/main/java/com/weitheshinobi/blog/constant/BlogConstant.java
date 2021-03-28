@@ -6,6 +6,7 @@ public class BlogConstant {
     public static final String QUERY = "query";
     public static final String TAG = "tag";
     public static final String TYPE = "type";
+    public static final String BLOG = "blog";
     public static final String RECOMMEND_BLOG = "recommendBlogs";
     public static final String RESULT_MESSAGE_SUCCESS = "操作成功";
     public static final String RESULT_MESSAGE_FAIL = "操作失敗";
