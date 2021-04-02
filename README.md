@@ -12,9 +12,17 @@
   - [prism](https://github.com/PrismJS/prism) 程式碼顯示優化
   - [Editor.md](https://pandao.github.io/editor.md/index.html) 開源在線 Markdown 編輯器
 
+# Demo
+
+## [Demo影片連結](https://youtu.be/t5pOGZBE6FE)
+
+<img src="./demo/demo01.png">
+
+<img src="./demo/demo02.png">
+
 # 功能
 
-- 後臺管理
+- 後臺管理 (localhost:8080/admin)
   - 使用者登入
   - 文章與文章屬性管理
     - 搜尋文章
