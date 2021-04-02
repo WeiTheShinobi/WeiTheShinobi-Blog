@@ -1,5 +1,7 @@
 # 美麗ㄉ部落格
 
+一個簡單又美麗的部落格
+
 # 技術集成
 
 - 後端：Java Spring Boot
@@ -11,14 +13,6 @@
   - [typo.css](https://github.com/sofish/typo.css) 中文網頁重設與排版
   - [prism](https://github.com/PrismJS/prism) 程式碼顯示優化
   - [Editor.md](https://pandao.github.io/editor.md/index.html) 開源在線 Markdown 編輯器
-
-# Demo
-
-## [Demo影片連結](https://youtu.be/t5pOGZBE6FE)
-
-<img src="./demo/demo01.png">
-
-<img src="./demo/demo02.png">
 
 # 功能
 
@@ -37,7 +31,17 @@
   - 歸檔
   - 關於我
 
-  
+
+# Demo
+
+## [Demo影片連結](https://youtu.be/t5pOGZBE6FE)
+
+<img src="./demo/demo01.png">
+
+<img src="./demo/demo02.png">
+
+
+
 
 
 
