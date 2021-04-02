@@ -17,7 +17,7 @@
 # 功能
 
 - 後臺管理 (localhost:8080/admin)
-  - 管理員登入
+  - 登入
     - 使用者：admin；密碼：123456
   - 文章與文章屬性管理
     - 搜尋文章
@@ -32,10 +32,15 @@
   - 歸檔
   - 關於我
 
-
 # Demo
 
+---
+
 ## [Demo影片連結](https://youtu.be/t5pOGZBE6FE)
+
+---
+
+
 
 <img src="./demo/demo01.png">
 
