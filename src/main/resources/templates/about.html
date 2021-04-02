@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於我</title>
@@ -10,7 +10,7 @@
 <body>
 
     <!--導航-->
-    <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <nav th:replace="_fragments :: menu(5)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
         <div class="ui container">
             <div class="ui inverted secondary stackable menu">
                 <h2 class="ui teal header item">Blog</h2>
@@ -41,7 +41,7 @@
             <div class="ui stackable grid">
                 <div class="eleven wide column">
                     <div class="ui segment">
-                        <img src="../static/images/wei_the_shinobi.jpg" alt="" class="ui rounded image" style="width: 600px">
+                        <img src="../static/images/wei_the_shinobi.jpg" th:src="@{/images/wei_the_shinobi.jpg}" alt="" class="ui rounded image" style="width: 600px">
                     </div>
                 </div>
 
@@ -58,21 +58,19 @@
                     </div>
                     <div class="ui attached segment">
                         <div class="ui orange basic left pointing label m-margin-tb-tiny">coding</div>
-                        <div class="ui orange basic left pointing label m-margin-tb-tiny">畫圖</div>
-                        <div class="ui orange basic left pointing label m-margin-tb-tiny">閱讀</div>
+                        <div class="ui orange basic left pointing label m-margin-tb-tiny">學習</div>
                         <div class="ui orange basic left pointing label m-margin-tb-tiny">投資</div>
                         <div class="ui orange basic left pointing label m-margin-tb-tiny">創作</div>
 
                     </div>
                     <div class="ui attached segment">
                         <div class="ui teal basic left pointing label m-margin-tb-tiny">Web</div>
-                        <div class="ui teal basic left pointing label m-margin-tb-tiny">Android</div>
                         <div class="ui teal basic left pointing label m-margin-tb-tiny">Java</div>
-                        <div class="ui teal basic left pointing label m-margin-tb-tiny">Kotlin</div>
-                        <div class="ui teal basic left pointing label m-margin-tb-tiny">MySQL</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">Go</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">後端</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">繪畫</div>
                         <div class="ui teal basic left pointing label m-margin-tb-tiny">漫畫</div>
-                        <div class="ui teal basic left pointing label m-margin-tb-tiny">畫圖</div>
-                        <div class="ui teal basic left pointing label m-margin-tb-tiny">投資</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">...</div>
 
                     </div>
                     <div class="ui bottom attached segment">
@@ -93,7 +91,7 @@
     <br>
 
     <!--footer-->
-    <footer class="ui inverted vertical segment">
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment">
         <div class="ui center aligned container">
             <div class="ui inverted divided stackable grid">
                 <div class="three wide column">
@@ -129,8 +127,10 @@
         </div>
     </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
     <script>
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');
